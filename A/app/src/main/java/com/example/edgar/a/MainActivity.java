@@ -1,5 +1,6 @@
 package com.example.edgar.a;
 
+import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,12 +25,14 @@ public class MainActivity extends AppCompatActivity {
     private Button button2;
     private Socket socket;
     private PrintWriter writer;
-    private static final String SERVER_IP = "10.0.2.2";
-    private static final int PORT = 8080;
+    private static final String SERVER_IP = "192.168.4.100";
+    private static final int PORT = 1234;
 
     private int counter = 0;
     private CountDownTimer timer;
     private static final int PERIOD = 2;
+
+    private MediaPlayer player;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,10 @@ public class MainActivity extends AppCompatActivity {
 
         button1 = (Button) findViewById(R.id.button);
         button2 = (Button) findViewById(R.id.button2);
+
+        player = MediaPlayer.create(this, R.raw.romance);
+
+
 
         //add listener
         button1.setOnClickListener(new View.OnClickListener() {
@@ -71,7 +78,13 @@ public class MainActivity extends AppCompatActivity {
             //for start the music through a bluetooth speak
             @Override
             public void onClick(View v) {
-                writer.println("start the music");
+                if (player.isPlaying()) {
+                    //if music is not playing, start it
+                    player.stop();
+                    player.reset();
+                } else {
+                    player.start();
+                }
             }
         });
     }

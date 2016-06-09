@@ -42,7 +42,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        //start the socket between arduino
+        Executors.newSingleThreadExecutor().submit(new ArduinoThread());
 
         button1 = (Button) findViewById(R.id.button);
         button2 = (Button) findViewById(R.id.button2);
@@ -87,26 +88,28 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (player.isPlaying()) {
                     //if music is not playing, start it
-                    player.stop();
-                    player.reset();
+                    player.pause();
+                    player.seekTo(0);
                 } else {
                     player.start();
                 }
             }
         });
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //start the thread for socket
-                Executors.newSingleThreadExecutor().submit(new ArduinoThread());
-            }
-        });
+//        button3.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //start the thread for socket
+//                Executors.newSingleThreadExecutor().submit(new ArduinoThread());
+//            }
+//        });
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        writer.close();
+        player.release();
+        if (writer != null)
+            writer.close();
         try {
             socket.close();
         } catch (IOException e) {

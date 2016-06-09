@@ -9,48 +9,89 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.edgar.res.MainActivity">
 
+
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Fan"
         android:id="@+id/button"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:background="#ed1212" />
+        android:background="#ed1212"
+        android:layout_marginLeft="171dp"
+        android:layout_marginStart="171dp"
+        android:layout_below="@+id/button4"
+        android:layout_alignLeft="@+id/linearLayout"
+        android:layout_alignStart="@+id/linearLayout" />
+
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Music"
+        android:text="son1"
         android:id="@+id/button2"
-        android:layout_marginTop="29dp"
-        android:layout_below="@+id/button"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/textView"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView"
+        android:layout_marginTop="53dp"
+        android:layout_marginLeft="25dp" />
 
-    <Button
+        <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="connect"
-        android:id="@+id/button3"
-        android:layout_above="@+id/button"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="56dp" />
+        android:text="son3"
+        android:id="@+id/button5"
+            android:layout_gravity="center_horizontal"
+            android:layout_above="@+id/button"
+            android:layout_toRightOf="@+id/button4"
+            android:layout_toEndOf="@+id/button4" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="son2"
+            android:id="@+id/button4"
+            android:layout_alignTop="@+id/button2"
+            android:layout_toRightOf="@+id/button2"
+            android:layout_toEndOf="@+id/button2" />
+
+    <TextView
+        android:layout_width="399dp"
+        android:layout_height="255dp"
+        android:text="
+     Par les soirs bleus d&apos;été, j&apos;irai dans les sentiers,
+        Picoté par les blés, fouler l&apos;herbe menue :
+       Rêveur, j&apos;en sentirai la fraîcheur à mes pieds.
+          Je laisserai le vent baigner ma tête nue.
+
+          Je ne parlerai pas, je ne penserai rien :
+       Mais l&apos;amour infini me montera dans l&apos;âme,
+        Et j&apos;irai loin, bien loin, comme un bohémien,
+   Par la Nature, - heureux comme avec une femme.
+
+                 Arthur Rimbaud, Sensation "
+        android:id="@+id/textView"
+        android:layout_gravity="center_vertical"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginRight="35dp" />
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/button"
-        android:layout_toLeftOf="@+id/button">
+        android:layout_toEndOf="@+id/textView"
+        android:layout_above="@+id/button4"
+        android:layout_toRightOf="@+id/textView"
+        android:id="@+id/linearLayout">
 
-        <TextView
+        <VideoView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="hello"
-            android:id="@+id/textView" />
+            android:id="@+id/videoView"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="25dp" />
     </LinearLayout>
+
+
 </RelativeLayout>

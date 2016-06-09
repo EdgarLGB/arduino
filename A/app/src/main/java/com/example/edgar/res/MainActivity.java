@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     private Button button1;
     private Button button2;
     private Button button3;
+    private Button button4;
+    private Button button5;
     private Socket socket;
     private PrintWriter writer;
     private static final String SERVER_IP = "192.168.4.1";
@@ -35,7 +37,9 @@ public class MainActivity extends AppCompatActivity {
     private CountDownTimer timer;
     private static final int PERIOD = 2;
 
-    private MediaPlayer player;
+    private MediaPlayer player1;
+    private MediaPlayer player2;
+    private MediaPlayer player3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +51,12 @@ public class MainActivity extends AppCompatActivity {
         button1 = (Button) findViewById(R.id.button);
         button2 = (Button) findViewById(R.id.button2);
         button3 = (Button) findViewById(R.id.button3);
+        button4 = (Button) findViewById(R.id.button4);
+        button5 = (Button) findViewById(R.id.button5);
 
-        player = MediaPlayer.create(this, R.raw.romance);
-
+        player1 = MediaPlayer.create(this, R.raw.son1);
+        player2 = MediaPlayer.create(this, R.raw.son2);
+        player3 = MediaPlayer.create(this, R.raw.son3);
 
 
         //add listener
@@ -81,16 +88,22 @@ public class MainActivity extends AppCompatActivity {
                 counter++;
             }
         });
+        player1.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.start();
+            }
+        });
         button2.setOnClickListener(new View.OnClickListener() {
             //for start the music through a bluetooth speak
             @Override
             public void onClick(View v) {
-                if (player.isPlaying()) {
+                if (player1.isPlaying()) {
                     //if music is not playing, start it
-                    player.stop();
-                    player.reset();
+                    player1.stop();
+                    player1.reset();
                 } else {
-                    player.start();
+                    player1.prepareAsync();
                 }
             }
         });
@@ -99,6 +112,32 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //start the thread for socket
                 Executors.newSingleThreadExecutor().submit(new ArduinoThread());
+            }
+        });
+        button4.setOnClickListener(new View.OnClickListener() {
+            //for start the music through a bluetooth speak
+            @Override
+            public void onClick(View v) {
+                if (player2.isPlaying()) {
+                    //if music is not playing, start it
+                    player2.stop();
+                    player2.reset();
+                } else {
+                    player2.start();
+                }
+            }
+        });
+        button5.setOnClickListener(new View.OnClickListener() {
+            //for start the music through a bluetooth speak
+            @Override
+            public void onClick(View v) {
+                if (player3.isPlaying()) {
+                    //if music is not playing, start it
+                    player3.stop();
+                    player3.reset();
+                } else {
+                    player3.start();
+                }
             }
         });
     }

@@ -30,57 +30,81 @@ void setup()
   sendData("AT+CWMODE=2\r\n",1000,DEBUG); // configure as access point
   sendData("AT+CIFSR\r\n",1000,DEBUG); // get ip address
   sendData("AT+CIPMUX=1\r\n",1000,DEBUG); // configure for multiple connections
-  sendData("AT+CIPSERVER=1,1234\r\n",1000,DEBUG); // turn on server on port 1234
+  sendData("AT+CIPSERVER=1,80\r\n",1000,DEBUG); // turn on server on port 1234
 }
  
 void loop()
 {
   if(esp8266.available()) // check if the esp is sending a message 
   {
-    
     if(esp8266.find("+IPD,"))
     {
-      int fanId = esp8266.read() - 48;// subtract 48 because the read() function returns 
-                                      // the ASCII decimal value and 0 (the first decimal number) starts at 48
+      Serial.println("find");
+    
+//    while(esp8266.available())
+//    {
+//      char c = esp8266.read();
+//      Serial.print(c);
+//    }
+    
+      const int headSize = 4;
+      int currentPosition = 0;
+      int fanId;
+      while(esp8266.available())
+      {
+        if(currentPosition == headSize)
+        {
+          fanId = esp8266.read() - 48;
+          break;        
+        }  
+        char c = esp8266.read();
+        Serial.print(c);               
+        currentPosition++;
+      }
+
+      Serial.println(fanId);
       switch (fanId) {
         case FAN1:
           //start fan1
           analogWrite(FANPIN_1, FANSPEED);
           analogWrite(FANPIN_2, LOW);
           analogWrite(FANPIN_3, LOW);
+          Serial.println("fan1 start");
           break;
         case FAN2:
           //start fan2
           analogWrite(FANPIN_1, LOW);
           analogWrite(FANPIN_2, FANSPEED);
           analogWrite(FANPIN_3, LOW);
+          Serial.println("fan2 start");
           break;
         case FAN3:
           //start fan3
           analogWrite(FANPIN_1, LOW);
           analogWrite(FANPIN_2, LOW);
           analogWrite(FANPIN_3, FANSPEED);
+          Serial.println("fan3 start");          
           break;
       }
 
 
      // delay(1000);
  
-     // int connectionId = esp8266.read()-48; // subtract 48 because the read() function returns 
-                                           // the ASCII decimal value and 0 (the first decimal number) starts at 48
-     
-     // String webpage = "<h1>Hello</h1>&lth2>World!</h2><button>LED1</button>";
-
-     // Serial.println(webpage);
- 
-     // String cipSend = "AT+CIPSEND=";
-     // cipSend += connectionId;
-     // cipSend += ",";
-     // cipSend +=webpage.length();
-     // cipSend +="\r\n";
-     
-     // sendData(cipSend,1000,DEBUG);
-     // sendData(webpage,1000,DEBUG);
+//      int connectionId = esp8266.read()-48; // subtract 48 because the read() function returns 
+//                                           // the ASCII decimal value and 0 (the first decimal number) starts at 48
+//     
+//      String webpage = "<h1>Hello</h1>&lth2>World!</h2><button>LED1</button>";
+//
+//      Serial.println(webpage);
+// 
+//      String cipSend = "AT+CIPSEND=";
+//      cipSend += connectionId;
+//      cipSend += ",";
+//      cipSend +=webpage.length();
+//      cipSend +="\r\n";
+//     
+//      sendData(cipSend,1000,DEBUG);
+//      sendData(webpage,1000,DEBUG);
      
      // webpage="<button>LED2</button>";
      

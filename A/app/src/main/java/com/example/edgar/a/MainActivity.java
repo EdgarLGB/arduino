@@ -23,10 +23,11 @@ public class MainActivity extends AppCompatActivity {
 
     private Button button1;
     private Button button2;
+    private Button button3;
     private Socket socket;
     private PrintWriter writer;
-    private static final String SERVER_IP = "192.168.4.100";
-    private static final int PORT = 1234;
+    private static final String SERVER_IP = "192.168.4.1";
+    private static final int PORT = 80;
 
     private int counter = 0;
     private CountDownTimer timer;
@@ -39,11 +40,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //start the thread for socket
-        Executors.newSingleThreadExecutor().submit(new ArduinoThread());
+
 
         button1 = (Button) findViewById(R.id.button);
         button2 = (Button) findViewById(R.id.button2);
+        button3 = (Button) findViewById(R.id.button3);
 
         player = MediaPlayer.create(this, R.raw.romance);
 
@@ -63,7 +64,11 @@ public class MainActivity extends AppCompatActivity {
 
                         @Override
                         public void onFinish() {
-                            writer.println("fan " + counter);
+                            if (writer == null) {
+                                Log.d("info", "null");
+                                return;
+                            }
+                            writer.println(counter);
                             Log.d("info", "fan " + counter);
                             //reset the counter to 0
                             counter = 0;
@@ -85,6 +90,13 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     player.start();
                 }
+            }
+        });
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //start the thread for socket
+                Executors.newSingleThreadExecutor().submit(new ArduinoThread());
             }
         });
     }

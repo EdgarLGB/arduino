@@ -17,17 +17,14 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button button1;
-    private Button button2;
-    private Button button3;
-    private Button button4;
-    private Button button5;
+    private Button button_son1;
+    private Button button_son2;
+    private Button button_son3;
+    private Button button_fan;
     private Socket socket;
     private PrintWriter writer;
     private static final String SERVER_IP = "192.168.4.1";
@@ -46,13 +43,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //start the socket between arduino
+        Executors.newSingleThreadExecutor().submit(new ArduinoThread());
 
-
-        button1 = (Button) findViewById(R.id.button);
-        button2 = (Button) findViewById(R.id.button2);
-        button3 = (Button) findViewById(R.id.button3);
-        button4 = (Button) findViewById(R.id.button4);
-        button5 = (Button) findViewById(R.id.button5);
+        button_fan = (Button) findViewById(R.id.button_fan);
+        button_son1 = (Button) findViewById(R.id.button_son1);
+        button_son2 = (Button) findViewById(R.id.button_son2);
+        button_son3 = (Button) findViewById(R.id.button_son3);
 
         player1 = MediaPlayer.create(this, R.raw.son1);
         player2 = MediaPlayer.create(this, R.raw.son2);
@@ -60,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //add listener
-        button1.setOnClickListener(new View.OnClickListener() {
+        button_fan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (counter == 0) {
@@ -90,62 +87,105 @@ public class MainActivity extends AppCompatActivity {
         });
         player1.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
-            public void onPrepared(MediaPlayer mp) {
-                mp.start();
+            public void onPrepared(final MediaPlayer mp) {
+                button_son1.setOnClickListener(new View.OnClickListener() {
+                    //for start the music through a bluetooth speak
+                    @Override
+                    public void onClick(View v) {
+                        if (mp.isPlaying()) {
+                            //if music is not playing, start it
+                            mp.pause();
+                            mp.seekTo(0);
+                        } else {
+                            mp.start();
+                        }                    }
+                });
             }
         });
-        button2.setOnClickListener(new View.OnClickListener() {
-            //for start the music through a bluetooth speak
+        player2.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
-            public void onClick(View v) {
-                if (player1.isPlaying()) {
-                    //if music is not playing, start it
-                    player1.stop();
-                    player1.reset();
-                } else {
-                    player1.prepareAsync();
-                }
+            public void onPrepared(final MediaPlayer mp) {
+                button_son2.setOnClickListener(new View.OnClickListener() {
+                    //for start the music through a bluetooth speak
+                    @Override
+                    public void onClick(View v) {
+                        if (mp.isPlaying()) {
+                            //if music is not playing, start it
+                            mp.pause();
+                            mp.seekTo(0);
+                        } else {
+                            mp.start();
+                        }                    }
+                });
             }
         });
-        button3.setOnClickListener(new View.OnClickListener() {
+        player3.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
-            public void onClick(View v) {
-                //start the thread for socket
-                Executors.newSingleThreadExecutor().submit(new ArduinoThread());
+            public void onPrepared(final MediaPlayer mp) {
+                button_son3
+                        .setOnClickListener(new View.OnClickListener() {
+                    //for start the music through a bluetooth speak
+                    @Override
+                    public void onClick(View v) {
+                        if (mp.isPlaying()) {
+                            //if music is not playing, start it
+                            mp.pause();
+                            mp.seekTo(0);
+                        } else {
+                            mp.start();
+                        }                    }
+                });
             }
         });
-        button4.setOnClickListener(new View.OnClickListener() {
-            //for start the music through a bluetooth speak
-            @Override
-            public void onClick(View v) {
-                if (player2.isPlaying()) {
-                    //if music is not playing, start it
-                    player2.stop();
-                    player2.reset();
-                } else {
-                    player2.start();
-                }
-            }
-        });
-        button5.setOnClickListener(new View.OnClickListener() {
-            //for start the music through a bluetooth speak
-            @Override
-            public void onClick(View v) {
-                if (player3.isPlaying()) {
-                    //if music is not playing, start it
-                    player3.stop();
-                    player3.reset();
-                } else {
-                    player3.start();
-                }
-            }
-        });
+//        button_son1.setOnClickListener(new View.OnClickListener() {
+//            //for start the music through a bluetooth speak
+//            @Override
+//            public void onClick(View v) {
+//                if (player1.isPlaying()) {
+//                    //if music is not playing, start it
+//                    player1.pause();
+//                    player1.seekTo(0);
+//                } else {
+//                    player1.prepareAsync();
+//                }
+//            }
+//        });
+//        button_son2.setOnClickListener(new View.OnClickListener() {
+//            //for start the music through a bluetooth speak
+//            @Override
+//            public void onClick(View v) {
+//                if (player2.isPlaying()) {
+//                    //if music is not playing, start it
+//                    player2.pause();
+//                    player2.seekTo(0);
+//                } else {
+//                    player2.prepareAsync();
+//                }
+//            }
+//        });
+//        button_son3.setOnClickListener(new View.OnClickListener() {
+//            //for start the music through a bluetooth speak
+//            @Override
+//            public void onClick(View v) {
+//                if (player3.isPlaying()) {
+//                    //if music is not playing, start it
+//                    player3.pause();
+//                    player3.seekTo(0);
+//                } else {
+//                    player3.prepareAsync();
+//                }
+//            }
+//        });
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        writer.close();
+        player1.release();
+        player2.release();
+        player3.release();
+        if (writer != null)
+            writer.close();
         try {
             socket.close();
         } catch (IOException e) {

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:gravity="center_vertical">
+
+  <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lune melliflueuse aux lèvres des déments\n
+Les vergers et les bourgs cette nuit sont gourmands\n
+Les astres assez bien figurent les abeilles\n
+De ce miel lumineux qui dégoutte des treilles\n
+Car voici que tout doux et leur tombant du ciel\n
+Chaque rayon de lune est un rayon de miel\n
+Or caché je conçois la très douce aventure\n
+J'ai peur du dard de feu de cette abeille Arcture\n
+Qui posa dans mes mains des rayons décevants\n
+Et prit son miel lunaire à la rose des vents\n
+\n
+Guillaume Apollinaire, Clair de lune"
+        android:id="@+id/textView"
+        app:x_in="5.0"
+        app:x_out="5.0"
+        app:a_in="5.0"
+        app:a_out="5.0"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="150dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="50dp"
+        android:maxWidth="400dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+      <Button
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="son3"
+          android:id="@+id/button_son3"
+          android:tag="son"
+          app:x_in="5.0"
+          app:x_out="5.0"
+          app:a_in="5.0"
+          app:a_out="5.0"
+          android:layout_marginLeft="60dp"
+          android:layout_marginStart="60dp"
+          android:layout_alignTop="@+id/button_fan3"
+          android:layout_alignParentLeft="true"
+          android:layout_alignParentStart="true" />
+
+      <Button
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="fan"
+          android:id="@+id/button_fan3"
+          android:tag="fan"
+          app:x_in="5.0"
+          app:x_out="5.0"
+          app:a_in="5.0"
+          app:a_out="5.0"
+          android:layout_marginLeft="51dp"
+          android:layout_marginStart="51dp"
+          android:layout_centerVertical="true"
+          android:layout_toRightOf="@+id/button_son3"
+          android:layout_toEndOf="@+id/button_son3" />
+
+    </RelativeLayout>
+
+
+  </LinearLayout>
+
+
+  <LinearLayout
+      android:orientation="horizontal"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_toEndOf="@+id/textView"
+      android:layout_above="@+id/button_son3"
+      android:layout_toRightOf="@+id/textView"
+      android:id="@+id/linearLayout">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:src="@drawable/earth"
+        app:x_in="5.0"
+        app:x_out="5.0"
+        app:a_in="5.0"
+        app:a_out="5.0"
+        android:layout_gravity="center"
+        android:layout_margin="200dp" />
+  </LinearLayout>
+
+
+</LinearLayout>

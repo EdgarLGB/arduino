@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/white"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
@@ -12,7 +14,7 @@
       android:orientation="vertical">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="460dp"
         android:layout_height="wrap_content"
         android:text="Par les soirs bleus d'été, j'irai dans les sentiers,\n
 Picoté par les blés, fouler l'herbe menue :\n
@@ -33,9 +35,10 @@ Arthur Rimbaud, Sensation"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="150dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="50dp" />
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:textColor="@android:color/black" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -86,19 +89,22 @@ Arthur Rimbaud, Sensation"
       android:layout_toEndOf="@+id/textView"
       android:layout_above="@+id/button_son1"
       android:layout_toRightOf="@+id/textView"
-      android:id="@+id/linearLayout">
+      android:id="@+id/linearLayout"
+      android:weightSum="1">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:id="@+id/imageView"
-        android:src="@drawable/earth"
+        android:src="@drawable/ImageAppli1"
         app:x_in="5.0"
         app:x_out="5.0"
         app:a_in="5.0"
         app:a_out="5.0"
         android:layout_gravity="center"
-        android:layout_margin="200dp" />
+        android:layout_weight="0.08"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="50dp" />
   </LinearLayout>
 
 

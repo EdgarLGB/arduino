@@ -7,7 +7,7 @@
     android:gravity="center_vertical">
 
   <LinearLayout
-      android:layout_width="wrap_content"
+      android:layout_width="460dp"
       android:layout_height="match_parent"
       android:orientation="vertical">
 
@@ -34,8 +34,8 @@ Guillaume Apollinaire, Clair de lune"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="150dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:maxWidth="400dp" />
 
@@ -90,17 +90,26 @@ Guillaume Apollinaire, Clair de lune"
       android:layout_toRightOf="@+id/textView"
       android:id="@+id/linearLayout">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-        android:src="@drawable/earth"
-        app:x_in="5.0"
-        app:x_out="5.0"
-        app:a_in="5.0"
-        app:a_out="5.0"
-        android:layout_gravity="center"
-        android:layout_margin="200dp" />
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+      <ImageView
+          android:layout_width="fill_parent"
+          android:layout_height="fill_parent"
+          android:id="@+id/imageView"
+          android:src="@drawable/ImageAppli3"
+          app:x_in="5.0"
+          app:x_out="5.0"
+          app:a_in="5.0"
+          app:a_out="5.0"
+          android:layout_gravity="center"
+          android:layout_alignParentStart="false"
+          android:layout_alignParentEnd="false"
+          android:layout_marginRight="50dp"
+          android:layout_marginBottom="50dp" />
+    </RelativeLayout>
+
   </LinearLayout>
 
 

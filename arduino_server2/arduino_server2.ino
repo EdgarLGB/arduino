@@ -4,6 +4,7 @@
 #define FAN1 1
 #define FAN2 2
 #define FAN3 3
+#define FAN_STOP -1
 #define FANPIN_1 5
 #define FANPIN_2 7
 #define FANPIN_3 9
@@ -40,12 +41,6 @@ void loop()
     if(esp8266.find("+IPD,"))
     {
       Serial.println("find");
-    
-//    while(esp8266.available())
-//    {
-//      char c = esp8266.read();
-//      Serial.print(c);
-//    }
     
       const int headSize = 4;
       int currentPosition = 0;
@@ -84,6 +79,13 @@ void loop()
           analogWrite(FANPIN_2, LOW);
           analogWrite(FANPIN_3, FANSPEED);
           Serial.println("fan3 start");          
+          break;
+        case FAN_STOP:
+          //stop all the fan
+          analogWrite(FANPIN_1, LOW);
+          analogWrite(FANPIN_2, LOW);
+          analogWrite(FANPIN_3, LOW);
+          Serial.println("fan stop");
           break;
       }
 

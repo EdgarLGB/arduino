@@ -38,8 +38,8 @@ public class ParallaxFragment extends Fragment implements ViewPager.OnPageChange
   @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
 
-    //start the socket between arduino
-    Executors.newSingleThreadExecutor().submit(new ArduinoThread());
+/*    //start the socket between arduino
+    Executors.newSingleThreadExecutor().submit(new ArduinoThread());*/
 
     View view = inflater.inflate(R.layout.fragment_parallax, container, false);
 
@@ -87,7 +87,7 @@ public class ParallaxFragment extends Fragment implements ViewPager.OnPageChange
   }
 
   @Override public void onPageSelected(int position) {
-    Toast.makeText(getActivity(), "Location: " + position, Toast.LENGTH_SHORT).show();
+    Toast.makeText(getContext(), "Location: " + position, Toast.LENGTH_SHORT).show();
     player.release();
     switch (position % 3) {
       case 0:
@@ -107,6 +107,29 @@ public class ParallaxFragment extends Fragment implements ViewPager.OnPageChange
   }
 
   @Override
+  public void onStart() {
+    super.onStart();
+    //start the socket between arduino
+    Executors.newSingleThreadExecutor().submit(new ArduinoThread());
+    Log.i("info", "start");
+  }
+
+  @Override
+  public void onStop() {
+    //stop all the fan
+    writer.println(-1);
+    Toast.makeText(getContext(), "stop all the fan", Toast.LENGTH_SHORT).show();
+    try {
+      socket.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    writer.close();
+    Log.i("info", "close");
+    super.onStop();
+  }
+
+  @Override
   public void onClick(View v) {
     Log.i("tag", "tag=" + v.getTag());
     switch ((String)v.getTag()) {
@@ -122,13 +145,15 @@ public class ParallaxFragment extends Fragment implements ViewPager.OnPageChange
             @Override
             public void onFinish() {
               if (writer == null) {
-                Toast.makeText(getActivity(), "Fail to start the fan " + counter, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Fail to start the fan " + counter, Toast.LENGTH_SHORT).show();
                 counter = 0;
                 return;
               }
-              writer.println(counter);
-              Toast.makeText(getActivity(), "start the fan " + counter, Toast.LENGTH_SHORT).show();
-              Log.d("info", "fan " + counter + " start");
+              if (counter > 0 && counter < 4) {
+                writer.println(counter);
+                Toast.makeText(getContext(), "start the fan " + counter, Toast.LENGTH_SHORT).show();
+                Log.d("info", "fan " + counter + " start");
+              }
               //reset the counter to 0
               counter = 0;
             }
@@ -158,11 +183,12 @@ public class ParallaxFragment extends Fragment implements ViewPager.OnPageChange
         socket = new Socket(address, PORT);
         try {
           writer = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
-          Log.i("info", "start socket....");
-          if (writer != null) {
-            Toast.makeText(getActivity(), "Connect to arduino successfully", Toast.LENGTH_SHORT).show();
+          if (socket.isConnected()) {
+            Log.i("info", "connect");
+            Toast.makeText(getContext(), "Connect to arduino successfully", Toast.LENGTH_SHORT).show();
           } else {
-            Toast.makeText(getActivity(), "Fail to connect to arduino", Toast.LENGTH_SHORT).show();
+            Log.i("info", "fail to connect");
+            Toast.makeText(getContext(), "Fail to connect to arduino", Toast.LENGTH_SHORT).show();
           }
         } catch (IOException e) {
           e.printStackTrace();

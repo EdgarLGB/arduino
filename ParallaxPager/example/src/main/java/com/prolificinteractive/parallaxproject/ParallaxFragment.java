@@ -117,7 +117,9 @@ public class ParallaxFragment extends Fragment implements ViewPager.OnPageChange
   @Override
   public void onStop() {
     //stop all the fan
-    writer.println(-1);
+    if (writer != null) {
+      writer.println(0);
+    }
     Toast.makeText(getContext(), "stop all the fan", Toast.LENGTH_SHORT).show();
     try {
       socket.close();

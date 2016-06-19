@@ -118,14 +118,21 @@ public class ParallaxFragment extends Fragment implements ViewPager.OnPageChange
   public void onStop() {
     //stop all the fan
     writer.println(0);
+    if (writer != null) {
+      writer.println(0);
+    }
     Toast.makeText(getContext(), "stop all the fan", Toast.LENGTH_SHORT).show();
     try {
-      socket.close();
+      if (socket != null) {
+        socket.close();
+      }
     } catch (IOException e) {
       e.printStackTrace();
     }
-    writer.close();
-    Log.i("info", "close");
+    if (writer != null) {
+      writer.close();
+      Log.i("info", "close");
+    }
     super.onStop();
   }
 

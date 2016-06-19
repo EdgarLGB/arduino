@@ -4,7 +4,7 @@
 #define FAN1 1
 #define FAN2 2
 #define FAN3 3
-#define FAN_STOP -1
+#define FAN_STOP 0
 #define FANPIN_1 5
 #define FANPIN_2 7
 #define FANPIN_3 9

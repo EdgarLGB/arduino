@@ -14,18 +14,19 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Lune melliflueuse aux lèvres des déments\n
-Les vergers et les bourgs cette nuit sont gourmands\n
-Les astres assez bien figurent les abeilles\n
-De ce miel lumineux qui dégoutte des treilles\n
-Car voici que tout doux et leur tombant du ciel\n
-Chaque rayon de lune est un rayon de miel\n
-Or caché je conçois la très douce aventure\n
-J'ai peur du dard de feu de cette abeille Arcture\n
-Qui posa dans mes mains des rayons décevants\n
-Et prit son miel lunaire à la rose des vents\n
+        android:text="
+        Lune melliflueuse aux lèvres des déments\n
+   Les vergers et les bourgs cette nuit sont gourmands\n
+        Les astres assez bien figurent les abeilles\n
+      De ce miel lumineux qui dégoutte des treilles\n
+     Car voici que tout doux et leur tombant du ciel\n
+        Chaque rayon de lune est un rayon de miel\n
+        Or caché je conçois la très douce aventure\n
+      J'ai peur du dard de feu de cette abeille Arcture\n
+      Qui posa dans mes mains des rayons décevants\n
+        Et prit son miel lunaire à la rose des vents\n
 \n
-Guillaume Apollinaire, Clair de lune"
+           Guillaume Apollinaire, Clair de lune"
         android:id="@+id/textView"
         app:x_in="5.0"
         app:x_out="5.0"
@@ -34,16 +35,17 @@ Guillaume Apollinaire, Clair de lune"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="90dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:maxWidth="400dp" />
+        android:maxWidth="400dp"
+        android:textColor="@android:color/black" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-      <Button
+      <ImageButton
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:text="son3"
@@ -53,13 +55,14 @@ Guillaume Apollinaire, Clair de lune"
           app:x_out="5.0"
           app:a_in="5.0"
           app:a_out="5.0"
-          android:layout_marginLeft="60dp"
-          android:layout_marginStart="60dp"
+          android:background="@drawable/erduo"
+          android:layout_marginRight="44dp"
+          android:layout_marginEnd="44dp"
           android:layout_alignTop="@+id/button_fan3"
-          android:layout_alignParentLeft="true"
-          android:layout_alignParentStart="true" />
+          android:layout_toLeftOf="@+id/button_fan3"
+          android:layout_toStartOf="@+id/button_fan3" />
 
-      <Button
+      <ImageButton
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:text="fan"
@@ -69,11 +72,9 @@ Guillaume Apollinaire, Clair de lune"
           app:x_out="5.0"
           app:a_in="5.0"
           app:a_out="5.0"
-          android:layout_marginLeft="51dp"
-          android:layout_marginStart="51dp"
+          android:background="@drawable/bizi"
           android:layout_centerVertical="true"
-          android:layout_toRightOf="@+id/button_son3"
-          android:layout_toEndOf="@+id/button_son3" />
+          android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
 

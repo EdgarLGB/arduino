@@ -15,14 +15,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="
-        De mes fenêtres, je vois la Seine qui coule… la grande et large Seine qui va de Rouen au Havre, couverte de \n
-                                                                               bateaux qui passent.\n
+                 De mes fenêtres, je vois la Seine qui coule… \n
+         la grande et large Seine qui va de Rouen au Havre, couverte de \n
+                        bateaux qui passent.\n
         \n
-       A gauche là-bas, Rouen, la vaste ville aux toits bleus, sous le peuple pointu des clochers gothiques… dominés \n
+   A gauche là-bas, Rouen, la vaste ville aux toits bleus, sous le peuple pointu des clochers gothiques… dominés \n
       par la flèche de fonte de la cathédrale, et pleins de cloches qui sonnent dans l’air bleu des belles matinées, jetant \n
-                                         jusqu’à moi leur doux et lointain bourdonnement de fer… \n
+              jusqu’à moi leur doux et lointain bourdonnement de fer… \n
 \n
-                                                        G. De Maupassant, Le Horla"
+                        G. De Maupassant, Le Horla"
         android:id="@+id/textView"
         app:x_in="5.0"
         app:x_out="5.0"
@@ -35,6 +36,9 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:textSize="8dp"
+        android:lineSpacingExtra="@dimen/line_gap"
+        android:gravity="center"
+        android:layout_gravity="center"
         android:textColor="@android:color/black" />
 
     <RelativeLayout

@@ -15,29 +15,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="
-        Par les soirs bleus d'été, j'irai dans les sentiers,\n
-            Picoté par les blés, fouler l'herbe menue :\n
-         Rêveur, j'en sentirai la fraîcheur à mes pieds.\n
-            Je laisserai le vent baigner ma tête nue.\n
+Par les soirs bleus d'été, j'irai dans les sentiers,\n
+    Picoté par les blés, fouler l'herbe menue :\n
+ Rêveur, j'en sentirai la fraîcheur à mes pieds.\n
+    Je laisserai le vent baigner ma tête nue.\n
 \n
-             Je ne parlerai pas, je ne penserai rien :\n
-           Mais l'amour infini me montera dans l'âme,\n
-          Et j'irai loin, bien loin, comme un bohémien,\n
-          Par la Nature, - heureux comme avec une femme.\n
+     Je ne parlerai pas, je ne penserai rien :\n
+   Mais l'amour infini me montera dans l'âme,\n
+  Et j'irai loin, bien loin, comme un bohémien,\n
+  Par la Nature, - heureux comme avec une femme.\n
 \n
-                  Arthur Rimbaud, Sensation"
+          Arthur Rimbaud, Sensation"
         android:id="@+id/textView"
         app:x_in="5.0"
         app:x_out="5.0"
         app:a_in="5.0"
         app:a_out="5.0"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="90dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:textColor="@android:color/black" />
+
+        android:lineSpacingExtra="@dimen/line_gap"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="150dp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -58,7 +57,8 @@
           android:layout_marginEnd="69dp"
           android:layout_alignTop="@+id/button_fan1"
           android:layout_toLeftOf="@+id/button_fan1"
-          android:layout_toStartOf="@+id/button_fan1" />
+          android:layout_toStartOf="@+id/button_fan1"
+          android:layout_alignBottom="@+id/button_fan1" />
 
       <ImageButton
           android:layout_width="48dp"
@@ -72,7 +72,10 @@
           app:a_out="5.0"
           android:background="@drawable/bizi"
           android:layout_centerVertical="true"
-          android:layout_centerHorizontal="true" />
+          android:layout_alignParentRight="true"
+          android:layout_alignParentEnd="true"
+          android:layout_marginRight="172dp"
+          android:layout_marginEnd="172dp" />
 
     </RelativeLayout>
 

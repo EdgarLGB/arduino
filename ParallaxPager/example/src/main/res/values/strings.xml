@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="app_name">RES</string>
-  <string name="title">Planets!</string>
   <string name="mercury">Mercury</string>
   <string name="venus">Venus</string>
   <string name="earth">Earth</string>
@@ -11,4 +10,5 @@
   <string name="saturn">Saturn</string>
   <string name="uranus">Uranus</string>
   <string name="neptune">Neptune</string>
+  <string name="title">La Poésie</string>
 </resources>
